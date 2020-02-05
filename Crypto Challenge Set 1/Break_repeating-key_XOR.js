@@ -9,6 +9,8 @@ var binArrKey = [];
 var result = [];
 var planeTextArr;
 var abc;
+var sortEvarange = [];
+var sortNorm = [];
 
 function ciphertextIntoBlocks (cipher) {
   var avarange = [];
@@ -60,6 +62,8 @@ console.log(arr);
   if (avarange != 0) {
     console.log(`avarange value of hamming distance for KEYSIZE ${k} is: ${avr}`);
     console.log(`normAvarange is: ${normAvarange}`);
+    sortEvarange.push(avr);
+    sortNorm.push(normAvarange);
   }
   avarange = [];
 } 
@@ -113,4 +117,13 @@ array = [];
  }
   return hammingDistance(binArrText1, binArrText2);
 
+}
+
+console.log(sortEvarange.sort(compareNumeric));
+console.log(sortNorm.sort(compareNumeric));
+
+function compareNumeric(a, b) {
+  if (a > b) return 1;
+  if (a == b) return 0;
+  if (a < b) return -1;
 }
