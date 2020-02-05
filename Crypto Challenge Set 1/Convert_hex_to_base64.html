@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        Convert hex to base64
+    </title>
+</head>
+
+<body>
+    <h1>Crypto Challenge</h1>
+    <h3>task 1</h3>
+
+    <div>
+        <p>
+            the string: 49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d
+
+        </p>
+        <input type="text" id="str" placeholder="input 'the string' value"><br>
+        <button id="btn1" value="">convert</button><br>
+        <p>should produce: SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t</p>
+    </div><br><br>
+    <p id="result">Our result: </p><br>
+    <p>try to convert value from "our result": <input type="text" placeholder="input 'our result' value" id="next"></p>
+    <button id="btn2">decrypt</button><br>
+    <p id="decrypt"></p>
+
+    <script>
+        var result1;
+        var inp1;
+        document.querySelector('#btn1').onclick = toConvert;
+        var inp2;
+        document.querySelector('#next').onchange = toDecrypt;
+
+        function toConvert() {
+            inp1 = document.querySelector('#str').value;
+            // if (inp1 != "49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d" ) {        
+            // alert ("input 'under the string' value")
+            // } else {
+            result1 = btoa(inp1.match(/\w{2}/g).map(function (a) {
+                return String.fromCharCode(parseInt(a, 16));
+            }).join(""));
+            console.log(inp1);
+            console.log(result1);
+            document.querySelector('#result').innerText = `our result: ${result1}`;
+            // }
+        }
+
+        function toDecrypt () {
+            inp2 = document.querySelector('#next').value;
+            if (inp2 != "SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t") {
+                alert ("input 'our result' value")
+            } else {
+               inp1 = atob(inp2);
+            }
+            console.log(inp1);
+            document.querySelector('#decrypt').innerText = `decrypt text: ${inp1}`;
+        }
+    </script>
+</body>
+
+</html>
